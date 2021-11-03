@@ -23,9 +23,11 @@ function Charsheet () {
     }, this);
     return (
         <div>
-            <select>{raceList}</select>
-            <h1>Book App</h1>
-            <p>This is home page</p>
+            <input id='nome' type='text' placeholder='Insira o nome do seu personagem'></input>
+            <select id='raca' name='oi'>
+            <option value="" selected disabled hidden>Escolha sua raça</option>
+              {raceList}
+            </select>
         </div>
     );
 };
