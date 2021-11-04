@@ -7,6 +7,8 @@ import axios from "axios";
 
 function Charsheet () {
     const [races, setRaces] = useState([]);
+    const raca = document.getElementById('raca');
+    
 
     useEffect(() => {
         axios
@@ -21,13 +23,23 @@ function Charsheet () {
         <option key={i} value={item.slug}>{item.name}</option>
       )
     }, this);
+
+    function handlePrint() {
+        console.log(raca.value);
+        console.log(races[0].desc)
+    };
+    
     return (
         <div>
             <input id='nome' type='text' placeholder='Insira o nome do seu personagem'></input>
-            <select id='raca' name='oi'>
-            <option value="" selected disabled hidden>Escolha sua raça</option>
+            <select defaultValue = {false} id='raca' name='oi'>
+              <option value={false} selected disabled hidden>Escolha sua raça</option>
               {raceList}
             </select>
+            {raca != false &&
+              <p>baba</p>
+            }
+            <button onClick={handlePrint}>Submeter</button>
         </div>
     );
 };
