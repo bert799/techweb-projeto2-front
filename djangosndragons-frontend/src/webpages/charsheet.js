@@ -7,7 +7,8 @@ import axios from "axios";
 
 function Charsheet () {
     const [races, setRaces] = useState([]);
-    const raca = document.getElementById('raca');
+    const [raca, setRaca] = useState();
+    const [desc, setDesc] = useState();
     
 
     useEffect(() => {
@@ -16,30 +17,39 @@ function Charsheet () {
         .then((res) => setRaces(res.data.results));
     }, []);
 
+    useEffect(() => {
+      console.log("mudou")
+      console.log(raca)
+      console.log(desc)
+    }, [raca, desc])
+
     console.log(races)
     let raceList = races.length > 0
     	&& races.map((item, i) => {
       return (
-        <option key={i} value={item.slug}>{item.name}</option>
+        <option key={i} value={[item.name, item.desc]}>{item.name}</option>
       )
     }, this);
 
-    function handlePrint() {
-        console.log(raca.value);
-        console.log(races[0].desc)
+    function handlePrint(event) {
+      let lista = event.target.value.split(",")
+      setRaca(lista[0]);
+      lista.shift();
+      setDesc(lista.join());
     };
     
     return (
         <div>
             <input id='nome' type='text' placeholder='Insira o nome do seu personagem'></input>
-            <select defaultValue = {false} id='raca' name='oi'>
-              <option value={false} selected disabled hidden>Escolha sua raça</option>
+            <select onChange={handlePrint}>
+              <option selected disabled hidden>Escolha sua raça</option>
               {raceList}
             </select>
-            {raca != false &&
-              <p>baba</p>
-            }
-            <button onClick={handlePrint}>Submeter</button>
+            <button>Submeter</button>
+            <h2>Raça:</h2>
+            <p>{raca}</p>
+            <h2>Descrição:</h2>
+            <p>{desc}</p>
         </div>
     );
 };
