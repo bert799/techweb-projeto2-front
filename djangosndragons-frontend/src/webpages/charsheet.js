@@ -1,6 +1,7 @@
 //file: src/webpages/home.js
 
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -8,7 +9,11 @@ import axios from "axios";
 function Charsheet () {
     const [races, setRaces] = useState([]);
     const [raca, setRaca] = useState();
-    const [desc, setDesc] = useState();
+    const [racaDesc, setRacaDesc] = useState();
+    const [classes, setClasses] = useState([]);
+    const [classe, setClasse] = useState();
+    const [classeDesc, setClasseDesc] = useState();
+    const [nome, setNome] = useState();
 
     
     useEffect(() => {
@@ -16,40 +21,75 @@ function Charsheet () {
         .get("https://api.open5e.com/races")
         .then((res) => setRaces(res.data.results));
     }, []);
+    useEffect(() => {
+      axios
+      .get("https://api.open5e.com/classes")
+      .then((res) => setClasses(res.data.results));
+    }, []);
 
     useEffect(() => {
       console.log("mudou")
-      console.log(raca)
-      console.log(desc)
-    }, [raca, desc])
+      console.log(nome)
+    }, [nome])
 
-    console.log(races)
     let raceList = races.length > 0
     	&& races.map((item, i) => {
       return (
         <option key={i} value={[item.name, item.desc]}>{item.name}</option>
       )
     }, this);
+    
+    let classList = classes.length > 0
+    	&& classes.map((item, i) => {
+      return (
+        <option key={i} value={[item.name, item.desc]}>{item.name}</option>
+      )
+    }, this);
 
-    function handlePrint(event) {
+    function handleRaca(event) {
       let lista = event.target.value.split(",")
       setRaca(lista[0]);
       lista.shift();
-      setDesc(lista.join());
+      setRacaDesc(lista.join());
+    };
+
+    function handleClasse(event) {
+      let lista = event.target.value.split(",")
+      setClasse(lista[0]);
+      lista.shift();
+      setClasseDesc(lista.join());
     };
     
+    function handleNome(event) {
+      let lista = event.target.value.split(",")
+      setNome(lista[0]);
+    };
+
+    function handleSubmit() {
+      axios.post('http://127.0.0.1:8000/api/char/', {nome: nome, raca: raca, classe: classe}).then(
+      (resposta) => console.log(resposta.data))
+    }
     return (
         <div>
-            <input id='nome' type='text' placeholder='Insira o nome do seu personagem'></input>
-            <select onChange={handlePrint}>
+            <input id='nome' type='text' placeholder='Insira o nome do seu personagem' onChange={handleNome}></input>
+            
+            <h2>Raça:</h2>
+            <select onChange={handleRaca}>
               <option selected disabled hidden>Escolha sua raça</option>
               {raceList}
             </select>
-            <button>Submeter</button>
-            <h2>Raça:</h2>
-            <p>{raca}</p>
-            <h2>Descrição:</h2>
-            <p>{desc}</p>
+            <h2>Descrição da raça:</h2>
+            <ReactMarkdown>{racaDesc}</ReactMarkdown>
+            
+            <h2>Classe:</h2>
+            <select onChange={handleClasse}>
+              <option selected disabled hidden>Escolha sua classe</option>
+              {classList}
+            </select>
+            <h2>Descrição da classe:</h2>
+            <ReactMarkdown>{classeDesc}</ReactMarkdown>
+
+            <button onClick={handleSubmit}>Submeter</button>
         </div>
     );
 };
