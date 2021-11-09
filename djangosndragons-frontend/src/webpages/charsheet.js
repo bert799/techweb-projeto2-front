@@ -66,8 +66,14 @@ function Charsheet () {
     };
 
     function handleSubmit() {
-      axios.post('http://127.0.0.1:8000/api/char/', {nome: nome, raca: raca, classe: classe}).then(
-      (resposta) => console.log(resposta.data))
+      axios.post('http://127.0.0.1:8000/api/char/', {nome: nome, raca: raca, classe: classe})
+      .then((resposta) => {
+        setNome('');
+        setRaca('');
+        setRacaDesc([]);
+        setClasse('');
+        setClasseDesc([]);
+      });
     }
     return (
         <div>
