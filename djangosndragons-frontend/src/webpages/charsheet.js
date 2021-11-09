@@ -27,11 +27,6 @@ function Charsheet () {
       .then((res) => setClasses(res.data.results));
     }, []);
 
-    useEffect(() => {
-      console.log("mudou")
-      console.log(nome)
-    }, [nome])
-
     let raceList = races.length > 0
     	&& races.map((item, i) => {
       return (
@@ -68,11 +63,7 @@ function Charsheet () {
     function handleSubmit() {
       axios.post('http://127.0.0.1:8000/api/char/', {nome: nome, raca: raca, classe: classe})
       .then((resposta) => {
-        setNome('');
-        setRaca('');
-        setRacaDesc([]);
-        setClasse('');
-        setClasseDesc([]);
+        window.location.reload(false);
       });
     }
     return (

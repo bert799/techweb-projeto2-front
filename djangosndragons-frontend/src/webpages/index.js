@@ -10,14 +10,14 @@ import {
   
   
 import Charsheet from './charsheet';
-import MyBooks from './mybooks';
+import TelaPersonagens from './charscreen';
 import Favorites from './favorites';
 
 const Webpages = () => {
     return(
         <Router>
             <Route exact path="/" component= {Charsheet} />
-            <Route path = "/mybooks" component = {MyBooks} />
+            <Route path = "/api/char/" component = {TelaPersonagens} />
             <Route path = "/favorites" component = {Favorites} />
         </Router>
     );
