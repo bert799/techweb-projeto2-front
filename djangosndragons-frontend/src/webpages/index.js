@@ -12,15 +12,15 @@ import {
 import Charsheet from './charsheet';
 import TelaPersonagens from './charscreen';
 import Favorites from './favorites';
-import charview from './charview';
+import Charview from './charview';
 
 const Webpages = () => {
     return(
         <Router>
             <Route exact path="/" component= {Charsheet} />
-            <Route path = "/charview" component = {TelaPersonagens} />
+            <Route path = "/characters" component = {TelaPersonagens} />
             <Route path = "/favorites" component = {Favorites} />
-            <Route path = "/char/:charId" component = {charview} />
+            <Route path = "/character/:charId" component = {Charview} />
         </Router>
     );
 };
