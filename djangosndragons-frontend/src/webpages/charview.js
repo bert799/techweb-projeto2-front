@@ -7,31 +7,46 @@ import axios from "axios";
 function Charview ({match, location}) {
     const { params: { charId } } = match;
     const [nome, setNome] = useState();
-    const [raca, setRaca] = useState();
+    const [raca, setRaca] = useState('');
     const [racaDesc, setRacaDesc] = useState();
     const [races, setRaces] = useState([]);
-    const [classe, setClasse] = useState();
+    const [classe, setClasse] = useState('');
     const [classeDesc, setClasseDesc] = useState();
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
-         async function getRaca(){
-            console.log(raca)
-            await axios
-            .get(`https://api.open5e.com/races/${raca}`)
-            .then((res) => {console.log(res.data)});
-        }
+        //  async function getRaca(){
+        //     console.log(raca)
+        //     await axios
+        //     .get(`https://api.open5e.com/races/${raca}`)
+        //     .then((res) => {console.log(res.data)});
+        // }
         async function getChar(){
             const charData = await axios
                 .get("http://localhost:8000/api/char/"+String(charId))
                 .then((res) => res.data);
-            console.log(charData.race)
+            setNome(charData.name)
             setRaca(charData.race)
-            console.log(raca, 'RACA')
-            getRaca()
+            setClasse(charData.playerClass)
         }
         getChar()
     }, []);
+
+    useEffect(() =>{
+      console.log(raca)
+      axios
+      .get(`https://api.open5e.com/races/${raca.toLowerCase()}`)
+      .then((res) => {console.log(res.data)
+                      setRacaDesc(res.data.desc)});
+    },[raca]);
+
+    useEffect(() =>{
+      console.log(classe)
+      axios
+      .get(`https://api.open5e.com/classes/${classe.toLowerCase()}`)
+      .then((res) => {console.log(res.data)
+                      setClasseDesc(res.data.desc)});
+    },[classe]);
 
     // useEffect(() => {
     //     axios
