@@ -7,14 +7,13 @@ import axios from "axios";
 
 
 function Charsheet () {
+    const [nome, setNome] = useState();
     const [races, setRaces] = useState([]);
     const [raca, setRaca] = useState();
     const [racaDesc, setRacaDesc] = useState();
     const [classes, setClasses] = useState([]);
     const [classe, setClasse] = useState();
     const [classeDesc, setClasseDesc] = useState();
-    const [nome, setNome] = useState();
-
     
     useEffect(() => {
         axios
@@ -41,6 +40,11 @@ function Charsheet () {
       )
     }, this);
 
+    function handleNome(event) {
+          let lista = event.target.value.split(",")
+          setNome(lista[0]);
+        };
+
     function handleRaca(event) {
       let lista = event.target.value.split(",")
       setRaca(lista[0]);
@@ -55,11 +59,6 @@ function Charsheet () {
       setClasseDesc(lista.join());
     };
     
-    function handleNome(event) {
-      let lista = event.target.value.split(",")
-      setNome(lista[0]);
-    };
-
     function handleSubmit() {
       axios.post('http://127.0.0.1:8000/api/char/', {nome: nome, raca: raca, classe: classe})
       .then((resposta) => {
