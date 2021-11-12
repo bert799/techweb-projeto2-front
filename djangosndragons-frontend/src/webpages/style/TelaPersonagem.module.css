@@ -1,0 +1,25 @@
+.generalContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    background-color: #990000;
+  }
+  
+.charsheet {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 0.8rem;
+    height: 30vh;
+    width: 30vw;
+}
+
+.text1 {
+  margin: 0.1rem;
+}
