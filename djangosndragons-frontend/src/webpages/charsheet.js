@@ -61,7 +61,7 @@ function Charsheet () {
     };
 
     function handleSubmit() {
-      axios.post('http://127.0.0.1:8000/api/char/', {nome: nome, raca: raca, classe: classe})
+      axios.post('http://localhost:8000/api/char/', {name: nome, race: raca, playerClass: classe})
       .then((resposta) => {
         window.location.reload(false);
       });
