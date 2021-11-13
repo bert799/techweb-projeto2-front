@@ -4,6 +4,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 
 function Charsheet () {
@@ -60,13 +61,18 @@ function Charsheet () {
     };
     
     function handleSubmit() {
-      axios.post('http://localhost:8000/api/char/', {name: nome, race: raca, playerClass: classe})
+      axios.post('https://secret-bastion-19856.herokuapp.com/api/char/', {name: nome, race: raca, playerClass: classe})
       .then((resposta) => {
         window.location.reload(false);
       });
     }
     return (
         <div>
+          <div>
+            <h1>Crie seu personagem</h1>
+            <Link to={'/characters'}>Ver todos os personagens</Link>
+          </div>
+          <div>
             <input id='nome' type='text' placeholder='Insira o nome do seu personagem' onChange={handleNome}></input>
             
             <h2>Raça:</h2>
@@ -86,6 +92,7 @@ function Charsheet () {
             <ReactMarkdown>{classeDesc}</ReactMarkdown>
 
             <button onClick={handleSubmit}>Submeter</button>
+          </div>
         </div>
     );
 };

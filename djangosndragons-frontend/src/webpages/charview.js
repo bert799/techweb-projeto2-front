@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { Link } from 'react-router-dom';
 
 function Charview ({match, location}) {
     const { params: { charId } } = match;
@@ -15,12 +15,6 @@ function Charview ({match, location}) {
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
-        //  async function getRaca(){
-        //     console.log(raca)
-        //     await axios
-        //     .get(`https://api.open5e.com/races/${raca}`)
-        //     .then((res) => {console.log(res.data)});
-        // }
         async function getChar(){
             const charData = await axios
                 .get("https://secret-bastion-19856.herokuapp.com/api/char/"+String(charId))
@@ -47,15 +41,6 @@ function Charview ({match, location}) {
       .then((res) => {console.log(res.data)
                       setClasseDesc(res.data.desc)});
     },[classe]);
-
-    // useEffect(() => {
-    //     axios
-    //     .get("http://localhost:8000/api/char/"+String(charId))
-    //     .then((res) => {console.log(res.data)
-    //                     setNome(res.data.name)
-    //                     setRaca(res.data.race)
-    //                     setClasse(res.data.playerClass)});
-    // }, []);
 
     useEffect(() => {
         axios
@@ -111,7 +96,14 @@ function Charview ({match, location}) {
 
     return (
         <div>
-            <input id='nome' type='text' defaultValue={nome} onChange={handleNome}></input>
+          <div>
+            <h1>Edite Informções do seu personagem</h1>
+            <Link to={'/'}>Crie um novo personagem</Link>
+            <br></br>
+            <Link to={'/characters'}>Ver todos os personagens</Link>
+          </div>
+          <div>
+            <input id='nome' type='text' placeholder={nome} onChange={handleNome}></input>
             
             <h2>Raça:</h2>
             <select onChange={handleRaca}>
@@ -130,6 +122,7 @@ function Charview ({match, location}) {
             <ReactMarkdown>{classeDesc}</ReactMarkdown>
 
             <button onClick={handleSubmit}>Submeter</button>
+          </div>
         </div>
     );
 };
