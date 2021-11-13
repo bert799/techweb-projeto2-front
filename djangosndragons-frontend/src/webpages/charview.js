@@ -23,7 +23,7 @@ function Charview ({match, location}) {
         // }
         async function getChar(){
             const charData = await axios
-                .get("http://localhost:8000/api/char/"+String(charId))
+                .get("https://secret-bastion-19856.herokuapp.com/api/char/"+String(charId))
                 .then((res) => res.data);
             setNome(charData.name)
             setRaca(charData.race)
@@ -103,7 +103,7 @@ function Charview ({match, location}) {
 
     function handleSubmit() {
         console.log(nome,raca,classe)
-        axios.patch(`http://127.0.0.1:8000/api/char/${charId}/`, {name: nome, race: raca, playerClass: classe})
+        axios.patch(`https://secret-bastion-19856.herokuapp.com/api/char/${charId}/`, {name: nome, race: raca, playerClass: classe})
         .then((resposta) => {
           window.location.reload(false);
         });
@@ -111,7 +111,7 @@ function Charview ({match, location}) {
 
     return (
         <div>
-            <input id='nome' type='text' placeholder={nome} onChange={handleNome}></input>
+            <input id='nome' type='text' defaultValue={nome} onChange={handleNome}></input>
             
             <h2>Raça:</h2>
             <select onChange={handleRaca}>
