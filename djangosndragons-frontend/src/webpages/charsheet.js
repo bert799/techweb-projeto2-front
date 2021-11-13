@@ -4,6 +4,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 
 function Charsheet () {
@@ -67,6 +68,11 @@ function Charsheet () {
     }
     return (
         <div>
+          <div>
+            <h1>Crie seu personagem</h1>
+            <Link to={'/characters'}>Ver todos os personagens</Link>
+          </div>
+          <div>
             <input id='nome' type='text' placeholder='Insira o nome do seu personagem' onChange={handleNome}></input>
             
             <h2>Raça:</h2>
@@ -86,6 +92,7 @@ function Charsheet () {
             <ReactMarkdown>{classeDesc}</ReactMarkdown>
 
             <button onClick={handleSubmit}>Submeter</button>
+          </div>
         </div>
     );
 };

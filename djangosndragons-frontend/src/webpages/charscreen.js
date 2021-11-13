@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styles from './style/TelaPersonagem.module.css';
 import {image} from 'react-image'
+import { Link } from 'react-router-dom';
 
 const TelaPersonagens = () => {
     const [characters, setCharacters] = useState([])
@@ -24,7 +25,7 @@ const TelaPersonagens = () => {
     
     let charList = characters.length > 0
     	&& characters.map((item, i) => {
-      if (item.name != '' && item.race != '' && item.playerClass != ''){
+      if (item.name !== '' && item.race !== '' && item.playerClass !== ''){
         let img_path = require('./imgs/'+String(item.playerClass)+'.png').default //+'/imgs/'+String(item.playerClass)+'.png'
         return (
           <div className={styles.charsheet}>
@@ -32,6 +33,7 @@ const TelaPersonagens = () => {
             <p className={styles.text1}>{"Raça: "+item.race}</p>
             <p className={styles.text1}>{"Classe: "+item.playerClass}</p>
             <img width="100" src={img_path}/>
+            <Link to={'/character/'+item.id}> Editar personagem</Link>
             <button onClick={(event)=>handleDelete(event, item.id)}>Deletar Personagem {item.id}</button>
           </div>
         )}
@@ -40,6 +42,7 @@ const TelaPersonagens = () => {
     return (
         <div>
             <h1>Seus Personagens:</h1>
+            <Link to={'/'}>Crie um novo personagem</Link>
             <div className={styles.generalContainer}>
               {charList}
             </div>
