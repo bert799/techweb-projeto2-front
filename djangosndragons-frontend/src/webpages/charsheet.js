@@ -69,15 +69,18 @@ function Charsheet () {
     }
     return (
         <div>
-          <div>
-            <h1>Crie seu personagem</h1>
-            <Link to={'/characters'}>Ver todos os personagens</Link>
+          <div className={styles.appbar}>
+            <h1>DjangosNdragons</h1>
+            <div className={styles.links_box}>
+              <Link className={styles.links} to={'/characters'}>Ver todos os personagens</Link>
+            </div> 
           </div>
-          <div>
-            <input id='nome' type='text' placeholder='Insira o nome do seu personagem' onChange={handleNome}></input>
+          <h1>Crie seu personagem</h1>
+          <div className={styles.sheetContainer}>
+            <input className={styles.name} id='nome' type='text' placeholder='Insira o nome do seu personagem' onChange={handleNome}></input>
             
             <h2>Raça:</h2>
-            <select onChange={handleRaca}>
+            <select className={styles.generalSelect} onChange={handleRaca}>
               <option selected disabled hidden>Escolha sua raça</option>
               {raceList}
             </select>
@@ -85,14 +88,15 @@ function Charsheet () {
             <ReactMarkdown>{racaDesc}</ReactMarkdown>
             
             <h2>Classe:</h2>
-            <select onChange={handleClasse}>
+            <select className={styles.generalSelect} onChange={handleClasse}>
               <option selected disabled hidden>Escolha sua classe</option>
               {classList}
             </select>
             <h2>Descrição da classe:</h2>
-            <ReactMarkdown>{classeDesc}</ReactMarkdown>
-
-            <button onClick={handleSubmit}>Submeter</button>
+            <div className={styles.descriptions}>
+              <ReactMarkdown>{classeDesc}</ReactMarkdown>
+            </div>
+            <button className={styles.submitButton} onClick={handleSubmit}>Submeter</button>
           </div>
         </div>
     );

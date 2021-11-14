@@ -55,7 +55,6 @@ const TelaPersonagens = () => {
     return (
         <div>
             <h1>Seus Personagens:</h1>
-            {/* <Link to={'/'}>Crie um novo personagem</Link> */}
             <button onClick={handleCharCreationButton}>Crie um novo personagem</button>
             <div className={styles.generalContainer}>
               {charList}
