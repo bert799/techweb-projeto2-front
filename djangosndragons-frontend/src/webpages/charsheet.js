@@ -4,6 +4,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styles from './style/TelaPersonagem.module.css';
 import { Link } from 'react-router-dom';
 
 

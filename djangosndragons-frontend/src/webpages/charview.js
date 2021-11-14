@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styles from './style/TelaPersonagem.module.css';
 import { Link } from 'react-router-dom';
 
 function Charview ({match, location}) {
@@ -103,7 +104,7 @@ function Charview ({match, location}) {
             <Link to={'/characters'}>Ver todos os personagens</Link>
           </div>
           <div>
-            <input id='nome' type='text' placeholder={nome} onChange={handleNome}></input>
+            <input id='nome' type='text' defaultValue={nome} onChange={handleNome}></input>
             
             <h2>Raça:</h2>
             <select onChange={handleRaca}>

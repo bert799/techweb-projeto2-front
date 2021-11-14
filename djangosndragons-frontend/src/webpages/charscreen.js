@@ -22,6 +22,14 @@ const TelaPersonagens = () => {
         window.location.reload(false);
       });
     }
+
+    function handleEdit(event, id) {
+      window.location='/character/'+id;
+    }
+
+    function handleCharCreationButton() {
+      window.location='/';
+    }
     
     let charList = characters.length > 0
     	&& characters.map((item, i) => {
@@ -30,11 +38,16 @@ const TelaPersonagens = () => {
         return (
           <div className={styles.charsheet}>
             <p className={styles.text1}>{"Nome: "+item.name}</p>
-            <p className={styles.text1}>{"Raça: "+item.race}</p>
-            <p className={styles.text1}>{"Classe: "+item.playerClass}</p>
-            <img width="100" src={img_path}/>
-            <Link to={'/character/'+item.id}> Editar personagem</Link>
-            <button onClick={(event)=>handleDelete(event, item.id)}>Deletar Personagem {item.id}</button>
+            <div className={styles.racaclasse}>
+              <p className={styles.text1}>{"Raça: "+item.race}</p>
+              <p className={styles.text1}>{"Classe: "+item.playerClass}</p>
+            </div>
+            <img className={styles.portrait} src={img_path}/>
+            <div className={styles.editdelbuttons}>
+              {/* <Link to={'/character/'+item.id}> Editar personagem</Link> */}
+              <button onClick={(event) => handleEdit(event, item.id)}> Editar Personagem </button>
+              <button onClick={(event)=>handleDelete(event, item.id)}>Deletar Personagem </button>
+            </div>
           </div>
         )}
       }, this);
@@ -42,7 +55,8 @@ const TelaPersonagens = () => {
     return (
         <div>
             <h1>Seus Personagens:</h1>
-            <Link to={'/'}>Crie um novo personagem</Link>
+            {/* <Link to={'/'}>Crie um novo personagem</Link> */}
+            <button onClick={handleCharCreationButton}>Crie um novo personagem</button>
             <div className={styles.generalContainer}>
               {charList}
             </div>

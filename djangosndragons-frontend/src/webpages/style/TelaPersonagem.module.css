@@ -15,11 +15,35 @@
     display: flex;
     flex-direction: column;
     background-color: white;
+    border: 0.2rem solid black;
+    border-radius: 0.5rem;
     padding: 0.8rem;
-    height: 30vh;
+    margin: 0.8rem;
+    height: 40vh;
     width: 30vw;
 }
 
+.portrait {
+  width: 25vh;
+  align-self: center;
+  padding-bottom: 0.3rem;
+}
+
 .text1 {
+  font-size: 0.81rem;
   margin: 0.1rem;
+}
+
+.racaclasse {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 0.6mm solid #990000;
+  border-bottom: 0.6mm solid #990000;
+}
+
+.editdelbuttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
