@@ -61,7 +61,7 @@ function Charsheet () {
     };
     
     function handleSubmit() {
-      axios.post('https://secret-bastion-19856.herokuapp.com/api/char/', {name: nome, race: raca, playerClass: classe})
+      axios.post('https://vast-dawn-91290.herokuapp.com/api/char/', {name: nome, race: raca, playerClass: classe})
       .then((resposta) => {
         window.location.reload(false);
       });

@@ -10,14 +10,14 @@ const TelaPersonagens = () => {
 
     useEffect(() => {
         axios
-        .get("https://secret-bastion-19856.herokuapp.com/api/char/")
+        .get("https://vast-dawn-91290.herokuapp.com/api/char/")
         .then((res) => setCharacters(res.data));
     }, []);
 
     console.log(characters)
 
     function handleDelete(event, id) {
-      axios.delete('https://secret-bastion-19856.herokuapp.com/api/char/'+String(id))
+      axios.delete('https://vast-dawn-91290.herokuapp.com/api/char/'+String(id))
       .then((resposta) => {
         window.location.reload(false);
       });

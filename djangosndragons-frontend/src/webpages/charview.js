@@ -17,7 +17,7 @@ function Charview ({match, location}) {
     useEffect(() => {
         async function getChar(){
             const charData = await axios
-                .get("https://secret-bastion-19856.herokuapp.com/api/char/"+String(charId))
+                .get("https://vast-dawn-91290.herokuapp.com/api/char/"+String(charId))
                 .then((res) => res.data);
             setNome(charData.name)
             setRaca(charData.race)
@@ -88,7 +88,7 @@ function Charview ({match, location}) {
 
     function handleSubmit() {
         console.log(nome,raca,classe)
-        axios.patch(`https://secret-bastion-19856.herokuapp.com/api/char/${charId}/`, {name: nome, race: raca, playerClass: classe})
+        axios.patch(`https://vast-dawn-91290.herokuapp.com/api/char/${charId}/`, {name: nome, race: raca, playerClass: classe})
         .then((resposta) => {
           window.location.reload(false);
         });
