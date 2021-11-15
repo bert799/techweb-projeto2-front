@@ -4,5 +4,8 @@ Integrantes:
 Bernardo Cunha Capoferri  
 Guilherme Dantas Rameh  
 
-Funcionalidades para receber A+ (combinado com a professora):  
+Funcionalidade para receber A+ (combinado com a professora):  
 implementar CRUD mais completo, adicionando a funcionalidade de poder editar e deletar personagens.
+
+Link heroku:  
+https://evening-journey-65229.herokuapp.com/
