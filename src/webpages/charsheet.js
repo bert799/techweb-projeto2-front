@@ -62,7 +62,7 @@ function Charsheet () {
     };
     
     function handleSubmit() {
-      axios.post('https://vast-dawn-91290.herokuapp.com/api/char/', {name: nome, race: raca, playerClass: classe})
+      axios.post('http://127.0.0.1:8000/api/char/', {name: nome, race: raca, playerClass: classe})
       .then((resposta) => {
         window.location.reload(false);
       });

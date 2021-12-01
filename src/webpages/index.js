@@ -11,7 +11,6 @@ import {
   
 import Charsheet from './charsheet';
 import TelaPersonagens from './charscreen';
-import Favorites from './favorites';
 import Charview from './charview';
 
 const Webpages = () => {
@@ -19,7 +18,6 @@ const Webpages = () => {
         <Router>
             <Route exact path="/" component= {Charsheet} />
             <Route path = "/characters" component = {TelaPersonagens} />
-            <Route path = "/favorites" component = {Favorites} />
             <Route path = "/character/:charId" component = {Charview} />
         </Router>
     );
